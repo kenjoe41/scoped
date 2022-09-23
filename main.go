@@ -8,14 +8,9 @@ import (
 	"os"
 	"sync"
 
-	"github.com/kenjoe41/scoped/options"
-	"github.com/kenjoe41/scoped/scoped"
-	"golang.org/x/exp/slices"
+	"github.com/kenjoe41/scoped/pkg/options"
+	"github.com/kenjoe41/scoped/pkg/scoped"
 )
-
-/* Remove out of scope domains from scope domains.txt file.
-Read outofscope.txt file,
-and for every provided domain element, check if its out of scope and remove it.*/
 
 func main() {
 	flags := options.Scanflags()
@@ -29,6 +24,7 @@ func main() {
 		if err != nil {
 			log.Fatalf("error reading Out of Scope domains file: %s", err)
 		}
+
 	}
 
 	// if we have an in scope domains file, let's read them to a slice.
@@ -49,17 +45,21 @@ func main() {
 		defer domainsWG.Done()
 
 		for domain := range domainsChan {
+
 			// Check if domain is in Out of Scope Slice
-			if !slices.Contains(outOfScopeSlice, domain) {
+			if !scoped.Contains(&outOfScopeSlice, domain, flags.ExcludeSubs) {
+
 				// If inScopeSlice is not empty, then we have to print only inscope domains.
-				if inScopeSlice != nil {
-					if slices.Contains(inScopeSlice, domain) {
+				if len(inScopeSlice) > 0 {
+					if scoped.Contains(&inScopeSlice, domain, flags.ExcludeSubs) {
 						outputChan <- domain
 					}
 				} else {
 					// inScopeSlice is empty so we print the domain
 					outputChan <- domain
 				}
+			} else if scoped.Contains(&inScopeSlice, domain, true) {
+				outputChan <- domain
 			}
 		}
 
