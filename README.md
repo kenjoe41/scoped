@@ -25,16 +25,28 @@ Out of scope domains file.
 ## Examples
 
 - Read domains from a file and filter out the out-of-scope domains:
-```scoped -df domains.txt -of outofscope.txt```
+```
+scoped -df domains.txt -of outofscope.txt
+```
+This command reads the list of domains from the file 'domains.txt' and filters out the domains specified in the outofscope.txt file, and output the filtered domains to the console
 
 - Read domains from stdin and filter out the out-of-scope domains:
-```cat domains.txt | scoped -of outofscope.txt```
+```
+cat domains.txt | scoped -of outofscope.txt
+```
 
 - Read domains from a file and filter out the out-of-scope domains and only print in-scope domains:
-```scoped -df domains.txt -of outofscope.txt -if inscope.txt```
+```
+scoped -df domains.txt -of outofscope.txt -if inscope.txt
+```
+This command reads the list of domains from the file 'domains.txt' and filters out the domains specified in the outofscope.txt file, then it filters only the domains present in inscope.txt file, and output the filtered domains to the console
 
 - Read domains from a file and filter out the out-of-scope domains and exclude subdomains:
-```scoped -df domains.txt -of outofscope.txt -exclude-subs```
+```
+scoped -df domains.txt -of outofscope.txt -exclude-subs
+```
+This command reads the list of domains from the standard input and filters out the domains specified in the outofscope.txt file, also it excludes all subdomains of the filtered domains, and output the filtered domains to the console
+
 
 ## Installation
 
