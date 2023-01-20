@@ -1,6 +1,12 @@
 # Scoped 
 Scoped is a tool that takes in a list of domains, and filters them based on whether they are in or out of scope. It is useful for bug bounty hunters and penetration testers to quickly identify which domains they should focus on.
 
+## Installation
+
+```
+go install github.com/kenjoe41/scoped@latest
+```
+
 ## Usage 
 
 ```
@@ -47,12 +53,6 @@ scoped -df domains.txt -of outofscope.txt -exclude-subs
 ```
 This command reads the list of domains from the standard input and filters out the domains specified in the outofscope.txt file, also it excludes all subdomains of the filtered domains, and output the filtered domains to the console
 
-
-## Installation
-
-```
-go install github.com/kenjoe41/scoped@latest
-```
 
 ## Dependencies
 * Golang 1.11 or later
