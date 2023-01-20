@@ -18,7 +18,7 @@ func main() {
 	outOfScopeSlice := []string{}
 	inScopeSlice := []string{}
 
-	// If we have an out fo scope file, let's read it to a slice.
+	// If we have an out of scope file, let's read it to a slice.
 	if flags.OutofScopeFile != "" {
 		err := scoped.ReadFileToSlice(flags.OutofScopeFile, &outOfScopeSlice)
 		if err != nil {
