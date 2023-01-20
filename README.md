@@ -3,19 +3,19 @@ Scoped is a tool that takes in a list of domains, and filters them based on whet
 
 ## Usage 
 
-```scoped [flags]```
-
-## Flags
-
 ```
--df string
-Domain input file.
--exclude-subs
-Exclude subdomains when matching.
--if string
-In scope domains file.
--of string
-Out of scope domains file.
+$ scoped -h
+
+Usage of scoped:
+  -df string
+        Domain input file.
+  -exclude-subs
+        Exclude subdomains when matching.
+  -if string
+        In scope domains file.
+  -of string
+        Out of scope domains file.
+
 ```
 
 ## Examples
@@ -50,7 +50,9 @@ This command reads the list of domains from the standard input and filters out t
 
 ## Installation
 
-```go install github.com/kenjoe41/scoped@latest```
+```
+go install github.com/kenjoe41/scoped@latest
+```
 
 ## Dependencies
 * Golang 1.11 or later
